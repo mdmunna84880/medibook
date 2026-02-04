@@ -2,13 +2,7 @@ const {Schema, model} = require('mongoose');
 
 const userSchema = new Schema(
   {
-    name: {
-        firstName: { 
-            type: String,
-            required: true 
-        },
-        lastName: String,
-    },
+    name: String,
     email: {
       type: String,
       required: true,
@@ -47,7 +41,7 @@ const userSchema = new Schema(
   { timestamps: true },
 );
 
-
+// Model for the User Collection
 const User = model("User", userSchema);
 
 module.exports = User;

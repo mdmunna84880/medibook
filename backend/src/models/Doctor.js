@@ -32,7 +32,7 @@ const doctorSchema = new Schema(
 );
 
 
-// Model for the Doctor
+// Model for the Doctor Collection
 const Doctor = model("Doctor", doctorSchema);
 
 module.exports = Doctor;

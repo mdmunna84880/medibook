@@ -5,7 +5,6 @@ const env = require('./env')
 const connectToDB = async ()=>{
     try{
         await mongoose.connect(env.MONGO_URI);
-        console.log(env.MONGO_URI);
         console.log("Database connected successfuuly");
     }catch(err){
         console.log("Error occured while connecting to DB", err);

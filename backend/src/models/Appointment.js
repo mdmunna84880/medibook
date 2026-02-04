@@ -48,6 +48,7 @@ const appointmentSchema = new Schema(
   { timestamps: true }
 );
 
+// Model for the Appointment Collection
 const Appointment = model("Appointment", appointmentSchema);
 
 module.exports = Appointment;

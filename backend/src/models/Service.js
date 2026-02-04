@@ -20,6 +20,7 @@ const serviceSchema = new Schema(
   { timestamps: true }
 );
 
+// Model for the Service Collection
 const Service = model("Service", serviceSchema);
 
 module.exports = Service;
