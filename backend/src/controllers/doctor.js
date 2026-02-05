@@ -4,13 +4,8 @@ const getAllDepartment = async (req, res)=>{
     try{
         // Find all doctors
         const department = await Doctor.find({}, {department: 1});
-        // If there is no doctor
-        if(department.length === 0){
-            res.status(404).json({success: false, msg: "No department available, so no doctor"});
-            return;
-        }
 
-        // Response with all the department
+        // Response with all the department even with empty array
         res.status(200).json({success: true, department});
 
     }catch(err){

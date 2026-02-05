@@ -15,8 +15,6 @@ const doctorSchema = new Schema(
     department: {
       type: String,
       required: true,
-      unique: true,
-      index: true
     },
 
     experience: {

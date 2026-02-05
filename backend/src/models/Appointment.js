@@ -14,21 +14,11 @@ const appointmentSchema = new Schema(
       required: true
     },
 
-    department: {
-      type: String,
-      required: true
-    },
-
-    appointmentDate: {
+    appointmentAt: {
       type: Date,
       required: true
     },
-
-    appointmentTime: {
-      type: String,
-      required: true
-    },
-
+    
     comments: {
       type: String
     },

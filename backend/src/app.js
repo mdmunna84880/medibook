@@ -5,7 +5,8 @@ const cookieParser = require("cookie-parser");
 
 const authRoutes = require('./routes/auths');
 const userRoutes = require('./routes/users');
-const doctorRoutes = require('./routes/doctors')
+const doctorRoutes = require('./routes/doctors');
+const appointmentRoutes = require('./routes/appointments');
 const serviceRoutes = require('./routes/services');
 const env = require('./config/env');
 
@@ -30,7 +31,8 @@ app.get('/', (req, res)=>{
 // Middlewares for routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/doctors', doctorRoutes)
+app.use('/api/doctors', doctorRoutes);
+app.use('/api/appointments', appointmentRoutes);
 app.use('/api/services', serviceRoutes);
 
 module.exports = app;

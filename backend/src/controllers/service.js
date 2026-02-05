@@ -5,12 +5,8 @@ const getAllServices = async (req, res)=>{
     try{
         // Find all services
         const services = await Service.find({});
-        // No sevice available
-        if(services.length === 0){
-            res.json({success: false, msg: "Currently, there is no service", services});
-            return;
-        }
-        // Response with the service
+        
+        // Response with the service even with empty array
         res.status(200).json({success: true, services})
     }catch(err){
         console.log("Error found in the get all services", err);
