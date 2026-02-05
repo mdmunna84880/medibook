@@ -3,8 +3,8 @@ const {Schema, model} = require('mongoose');
 const doctorSchema = new Schema(
   {
     name: {
-      firstName: { type: String, required: true },
-      lastName: { type: String }
+      type: String,
+      required: true
     },
 
     specialization: {
@@ -14,7 +14,9 @@ const doctorSchema = new Schema(
 
     department: {
       type: String,
-      required: true
+      required: true,
+      unique: true,
+      index: true
     },
 
     experience: {
