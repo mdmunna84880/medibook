@@ -1,16 +1,20 @@
 const express = require('express');
 const morgan = require('morgan');
-const env = require('./config/env');
 const cors = require('cors');
-const authRoutes = require('./routes/auths');
 const cookieParser = require("cookie-parser");
+
+const authRoutes = require('./routes/auths');
+const userRoutes = require('./routes/users');
+const serviceRoutes = require('./routes/services');
+const env = require('./config/env');
 
 // Initializing application
 const app = express();
 
+// Middlewares like cors, cookieParser and more
 app.use(cors({credentials: true}));
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // Logger in Development phase
 if(env.NODE_ENV !== "production"){
@@ -22,6 +26,9 @@ app.get('/', (req, res)=>{
     res.status(200).json({msg: "Application is running successfully."});
 })
 
+// Middlewares for routes
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/services', serviceRoutes);
 
 module.exports = app;

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const env = require('../config/env')
 
 // See whether the user logged in or not
-const protect = (req, res, next) =>{
+const isLogin = (req, res, next) =>{
     try{
         // Get token from the request
         const token = req.cookies?.token;
@@ -30,4 +30,4 @@ const protect = (req, res, next) =>{
     }
 }
 
-module.exports = {protect}
+module.exports = {isLogin}
