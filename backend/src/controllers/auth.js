@@ -158,7 +158,7 @@ const googleAuth = async (req, res)=>{
         }
 
         // Find the user information from the DB
-        const user = await User.findOne({email: email.toLowerCase()});
+        let user = await User.findOne({email: email.toLowerCase()});
 
         // Check if the user is already registered with email or password
         if(user && user.authProvider === "local"){

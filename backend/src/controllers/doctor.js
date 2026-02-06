@@ -1,5 +1,6 @@
 const Doctor = require('../models/Doctor');
 
+// Get all department
 const getAllDepartment = async (req, res)=>{
     try{
         // Find all doctors
@@ -14,6 +15,7 @@ const getAllDepartment = async (req, res)=>{
     }
 }
 
+// Add doctor
 const addDoctor = async (req, res)=>{
     try{
         // Extract all important data

@@ -21,7 +21,6 @@ const userSchema = Joi.object({
     .min(7)
     .max(20)
     .optional(),
-  avatar: Joi.string().uri().optional(),
   address: Joi.object({
     addressLine1: Joi.string().max(255).optional(),
     addressLine2: Joi.string().max(255).optional(),
@@ -29,8 +28,7 @@ const userSchema = Joi.object({
     state: Joi.string().max(100).optional(),
     nationality: Joi.string().max(100).optional(),
     zipCode: Joi.string().max(20).optional(),
-  }).optional(),
-  a,
+  }).optional()
 });
 
 module.exports = {userSchema};

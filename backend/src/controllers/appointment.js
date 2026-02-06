@@ -1,21 +1,40 @@
 const mongoose = require("mongoose");
 const Appointment = require("../models/Appointment");
+const uploadToCloudinary = require("../utils/cloudUpload")
 
 // Book an appointment
 const bookAppointment = async (req, res) => {
   try {
     const userId = req.user.userId;
+
     // Extracted the appointment data
-    const { doctorId, appointmentAt, comments, report, status } = req.body;
+    const { doctorId, appointmentAt, comments, status } = req.body;
+
+    let reportData = null;
+
+    // Check if file exist
+    if (req.file) {
+      const uploaded = await uploadToCloudinary(
+        req.file.path,
+        "appointments/reports"
+      );
+      reportData = {
+        fileUrl: uploaded.fileUrl,
+        fileType: uploaded.fileType,
+        uploadedAt: uploaded.uploadedAt,
+      };
+    }
+
     // Save the appointment data
     const appointment = await Appointment.create({
       userId,
       doctorId,
       appointmentAt,
+      report: reportData,
       comments,
-      report,
       status,
     });
+    
     // Send the response with the appoinment data
     res.status(201).json({ success: true, appointment });
   } catch (err) {
@@ -101,7 +120,7 @@ const getDistinctYear = async (req, res) => {
     console.log("Error occured inside the getDistinctYear", err);
     res
       .status(500)
-      .json({ success: true, msg: "Error occured inside the Server" });
+      .json({ success: false, msg: "Error occured inside the Server" });
   }
 };
 

@@ -13,7 +13,7 @@ router.post("/login", login)
 router.post("/logout", logout)
 
 // Google authentication route
-router.post("google", googleAuth);
+router.post("/google", googleAuth);
 
 // login automatically via JWT
 router.get("/me", isLogin, getMe)
