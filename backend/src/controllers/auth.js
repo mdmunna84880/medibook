@@ -166,12 +166,8 @@ const googleAuth = async (req, res)=>{
             return;
         }
 
-        // Keep update the google profile
-        if(user){
-            user.avatar = avatar;
-            await user.save();
-        }else{
-            // Register the new user
+        // Register the new user
+        if(!user){
             user = await User.create({name, email: email.toLowerCase(), avatar, googleId, authProvider: "google"});
         }
 
