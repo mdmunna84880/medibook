@@ -1,13 +1,15 @@
 const express = require('express');
 const { register, login, logout, getMe, googleAuth } = require('../controllers/auth');
 const { isLogin } = require('../middlewares/auth');
+const { validate } = require('../models/User');
+const {userSchema} = require('../validators/userSchema')
 const router = express.Router();
 
 // Register route
-router.post("/register", register);
+router.post("/register", validate(userSchema), register);
 
 // Login Route
-router.post("/login", login)
+router.post("/login", validate(userSchema), login)
 
 // Logout route
 router.post("/logout", logout)
