@@ -1,7 +1,7 @@
 const express = require('express');
 const { register, login, logout, getMe, googleAuth } = require('../controllers/auth');
 const { isLogin } = require('../middlewares/auth');
-const { validate } = require('../models/User');
+const { validate } = require('../middlewares/validate');
 const {userSchema} = require('../validators/userSchema')
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.post("/login", validate(userSchema), login)
 router.post("/logout", logout)
 
 // Google authentication route
-router.post("/google", googleAuth);
+router.post("/google", validate(userSchema), googleAuth);
 
 // login automatically via JWT
 router.get("/me", isLogin, getMe)
