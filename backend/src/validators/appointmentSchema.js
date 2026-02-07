@@ -1,4 +1,4 @@
-const Joi = require("Joi");
+const Joi = require("joi");
 
 const appointmentSchema = Joi.object({
   doctorId: Joi.string().hex().length(24).required(),

@@ -1,4 +1,4 @@
-const Joi = require("Joi");
+const Joi = require("joi");
 
 const serviceSchema = Joi.object({
   name: Joi.string().required().trim().min(2).max(100).required(),

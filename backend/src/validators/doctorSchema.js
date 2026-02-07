@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const doctorSchema = Joi.object({
     name: Joi.string().required(),
