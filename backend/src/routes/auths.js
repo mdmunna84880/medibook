@@ -12,7 +12,7 @@ router.post("/register", validate(userSchema), register);
 router.post("/login", validate(userSchema), login)
 
 // Logout route
-router.post("/logout", logout)
+router.post("/logout", isLogin, logout)
 
 // Google authentication route
 router.post("/google", validate(userSchema), googleAuth);
