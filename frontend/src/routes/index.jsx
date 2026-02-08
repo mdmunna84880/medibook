@@ -1,0 +1,33 @@
+import { Route, Routes } from "react-router";
+
+import Dashboard from "@/pages/dashboard";
+import MainLayout from "@/layouts/MainLayout";
+import Profile from "@/pages/profile";
+import BookAppointment from "@/pages/book-appointment";
+import MyAppointment from "@/pages/my-appointment";
+import AuthLayout from "@/layouts/AuthLayout";
+import SignUp from "@/pages/signup";
+import Login from "@/pages/login";
+import NotFound from "@/NotFound";
+
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />} >
+        <Route index element={<Dashboard />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="book-appointment" element={<BookAppointment />} />
+        <Route path="my-appointment" element={<MyAppointment />} />
+      </Route>
+
+      <Route path="/" element={<AuthLayout />} >
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
+      </Route>
+
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
+export default AppRoutes;
