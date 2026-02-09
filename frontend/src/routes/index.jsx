@@ -9,6 +9,7 @@ import AuthLayout from "@/layouts/AuthLayout";
 import SignUp from "@/pages/signup";
 import Login from "@/pages/login";
 import NotFound from "@/NotFound";
+import Services from "@/pages/services";
 
 function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ function AppRoutes() {
         <Route path="profile" element={<Profile />} />
         <Route path="book-appointment" element={<BookAppointment />} />
         <Route path="my-appointment" element={<MyAppointment />} />
+        <Route path="services" element={<Services />} />
       </Route>
 
       <Route path="/" element={<AuthLayout />} >
