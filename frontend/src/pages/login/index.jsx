@@ -4,8 +4,8 @@ import Input from "@/components/ui/Input";
 import { CiMail } from "react-icons/ci";
 import { Link } from "react-router";
 import { TbLockPassword } from "react-icons/tb";
-import { FcGoogle } from "react-icons/fc";
 import { cn } from "@/utils/cn";
+import GoogleAuth from "@/components/common/GoogleAuth";
 
 function Login() {
   return (
@@ -46,17 +46,7 @@ function Login() {
       </div>
       {/* Sign with google */}
       <div className="px-2 sm:px-4 py-1 sm:py-2 flex justify-center w-full">
-        <button
-          className={cn(
-            "bg-[#fffffe] w-full drop-shadow-lg flex justify-between items-center gap-4 rounded-full px-4",
-            "py-1 sm:py-2 cursor-pointer hover:bg-[#fafaf5]",
-          )}
-        >
-          <span>
-            <FcGoogle className="text-lg sm:text-2xl" />
-          </span>
-          <span className="text-xl text-[#232946]">Sign in with Google</span>
-        </button>
+        <GoogleAuth authType={"Sign Up"}/>
       </div>
       {/* No account link to sign up */}
       <div className="flex justify-center mb-4">
