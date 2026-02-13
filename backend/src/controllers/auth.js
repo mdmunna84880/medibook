@@ -162,7 +162,7 @@ const googleAuth = async (req, res)=>{
 
         // Check if the user is already registered with email or password
         if(user && user.authProvider === "local"){
-            res.status(400).json({success: false, msg: "This email is registered email and password"});
+            res.status(400).json({success: false, msg: "This email is already registered"});
             return;
         }
 
