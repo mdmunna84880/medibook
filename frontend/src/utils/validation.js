@@ -74,3 +74,30 @@ export const validateEmail = (email = "") => {
   };
 };
 
+// Validate name function to validate and give information
+export const validateName = (name) =>{
+
+    const errors = [];
+
+    // Check if the name is empty
+    if (name.trim().length === 0) {
+        errors.push("Name is required");
+    }
+    
+    // Check if the name is at least three character
+    if(errors.length > 2){
+      errors.push("Name must be at least 3 character");
+    }
+
+    // Check if the name contains any invalid character then show errors.
+    if (!/^[A-Za-z\s]+$/.test(name)) {
+        errors.push("Name contains invalid characters. Only letters, and spaces are allowed.");
+    }
+    
+    return {
+      isValid: errors.length === 0,
+      errors,
+      message: errors.length ? errors.join(" "): "Name is valid."
+    };
+}
+

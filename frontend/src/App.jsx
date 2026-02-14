@@ -2,15 +2,20 @@
 
 import { useDispatch } from "react-redux";
 import AppRoutes from "./routes";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getMe } from "./store/auth/authThunk";
 import { ToastContainer } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch();
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
-    dispatch(getMe());
+    if(isFirstRender.current){
+      isFirstRender.current= false;
+      dispatch(getMe());
+    }
   }, [dispatch]);
 
   return (
