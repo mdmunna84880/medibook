@@ -142,7 +142,7 @@ const getMe = async (req, res)=>{
         return res.status(200).json({success: true, user});
     }catch(err){
         console.log("Error occured in the getme", err);
-        res.json({success: false, msg: "Error occured in the server"});
+        res.status(500).json({success: false, msg: "Error occured in the server"});
     }
 }
 
