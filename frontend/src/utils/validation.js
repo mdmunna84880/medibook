@@ -2,7 +2,7 @@
 
 // Validate password function to validate the password and give useful information
 export const validatePassword = (password) => {
-//   Regex expression for password validation
+  //   Regex expression for password validation
   const requirements = {
     minLength: password.length >= 8,
     maxLength: password.length <= 16,
@@ -13,7 +13,7 @@ export const validatePassword = (password) => {
     validChars: /^[A-Za-z\d@.#$!%*?&]+$/.test(password),
   };
 
-//   Errors if anything missing that is required
+  //   Errors if anything missing that is required
   const errors = [];
 
   if (!requirements.minLength)
@@ -38,31 +38,30 @@ export const validatePassword = (password) => {
   return {
     isValid: errors.length === 0,
     errors,
-    message: errors.length ? errors.join(" ") : "Password is valid."
+    message: errors.length ? errors.join(" ") : "Password is valid.",
   };
 };
 
 // Validate email function to validate and give information
 export const validateEmail = (email = "") => {
-//   All requirement for the email
+  //   All requirement for the email
   const requirements = {
     notEmpty: email.length > 0,
     hasAtSymbol: email.includes("@"),
-    validStructure: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email),
+    validStructure: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+      email,
+    ),
     noSpaces: !/\s/.test(email),
   };
 
-//   Store all errors
+  //   Store all errors
   const errors = [];
 
-  if (!requirements.notEmpty)
-    errors.push("Email is required.");
+  if (!requirements.notEmpty) errors.push("Email is required.");
 
-  if (!requirements.noSpaces)
-    errors.push("Email must not contain spaces.");
+  if (!requirements.noSpaces) errors.push("Email must not contain spaces.");
 
-  if (!requirements.hasAtSymbol)
-    errors.push("Email must contain '@' symbol.");
+  if (!requirements.hasAtSymbol) errors.push("Email must contain '@' symbol.");
 
   if (requirements.hasAtSymbol && !requirements.validStructure)
     errors.push("Invalid email format.");
@@ -70,34 +69,34 @@ export const validateEmail = (email = "") => {
   return {
     isValid: errors.length === 0,
     errors,
-    message: errors.length ? errors.join(" ") : "Email is valid."
+    message: errors.length ? errors.join(" ") : "Email is valid.",
   };
 };
 
 // Validate name function to validate and give information
-export const validateName = (name) =>{
+export const validateName = (name) => {
+  const errors = [];
 
-    const errors = [];
+  // Check if the name is empty
+  if (name.trim().length === 0) {
+    errors.push("Name is required");
+  }
+  
+  // Check if the name is at least two characters
+  else if (name.trim().length < 2) {
+    errors.push("Name must be at least 2 characters");
+  }
 
-    // Check if the name is empty
-    if (name.trim().length === 0) {
-        errors.push("Name is required");
-    }
-    
-    // Check if the name is at least three character
-    if(errors.length > 2){
-      errors.push("Name must be at least 3 character");
-    }
+  // Check if the name contains any invalid character then show errors.
+  if (!/^[A-Za-z\s]+$/.test(name)) {
+    errors.push(
+      "Name contains invalid characters. Only letters, and spaces are allowed.",
+    );
+  }
 
-    // Check if the name contains any invalid character then show errors.
-    if (!/^[A-Za-z\s]+$/.test(name)) {
-        errors.push("Name contains invalid characters. Only letters, and spaces are allowed.");
-    }
-    
-    return {
-      isValid: errors.length === 0,
-      errors,
-      message: errors.length ? errors.join(" "): "Name is valid."
-    };
-}
-
+  return {
+    isValid: errors.length === 0,
+    errors,
+    message: errors.length ? errors.join(" ") : "Name is valid.",
+  };
+};
