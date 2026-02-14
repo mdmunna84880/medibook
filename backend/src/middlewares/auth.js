@@ -10,6 +10,7 @@ const isLogin = (req, res, next) =>{
         // No token means, not logged in
         if(!token){
             res.status(401).json({success: false, msg: "Not authorized, token is missing"});
+            return;
         }
 
         // Verify and provide the data that we have converted into JWT earlier
