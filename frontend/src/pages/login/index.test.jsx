@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { describe, test, expect, vi, beforeEach } from "vitest";
+import { vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import Login from "./index";
