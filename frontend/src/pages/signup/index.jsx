@@ -2,7 +2,7 @@
 
 import Input from "@/components/ui/Input";
 import { CiMail } from "react-icons/ci";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, useLocation } from "react-router";
 import { TbLockPassword } from "react-icons/tb";
 import { cn } from "@/utils/cn";
 import GoogleAuth from "@/components/common/GoogleAuth";
@@ -15,10 +15,9 @@ import { MdBadge } from "react-icons/md";
 
 function SignUp() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const { error, message, isAuthenticated, loading } = useSelector(
+  const { error, loading } = useSelector(
     (state) => state.auth,
   );
 
@@ -27,7 +26,6 @@ function SignUp() {
   const [touched, setTouched] = useState({name: false, email: false, password: false });
 
   // Ref to track the toast
-  const hasShownLogin = useRef(false);
   const hasShownRedirect = useRef(false);
 
   // Validate the email, password, name and get  validation error
@@ -79,17 +77,6 @@ function SignUp() {
       hasShownRedirect.current = true;
     }
   }, [location.state?.fromProtected]);
-
-  // Show signup success message after successful sign up and navigate to the user from where they are redirected
-  useEffect(() => {
-    if (isAuthenticated && message && !hasShownLogin.current) {
-      toast.success(message);
-      hasShownLogin.current = true;
-      // Get the previous location from where the user redirected for register
-      const redirectPath = location.state?.from || "/";
-      navigate(redirectPath, { replace: true });
-    }
-  }, [isAuthenticated, message, navigate, location.state?.from]);
 
   return (
     <div className="bg-[#fffffe] border border-[#121629]/60 rounded-sm sm:rounded-md shadow-md sm:shadow-xl">

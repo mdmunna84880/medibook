@@ -7,15 +7,16 @@ import { getMe } from "./store/auth/authThunk";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();   
 
+  // Get the logged patient profile data
   useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={2000} />
       <AppRoutes />
     </>
   );

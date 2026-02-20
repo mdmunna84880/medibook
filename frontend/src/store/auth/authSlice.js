@@ -13,6 +13,14 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    // Clear auth message, error and make loading false
+    clearAuthMsgErr: (state)=>{
+      state.loading = false;
+      state.error = null;
+      state.message = null;
+    }
+  },
   extraReducers: (builder)=>{
     builder
     // Login cases
@@ -107,3 +115,4 @@ const authSlice = createSlice({
 })
 
 export default authSlice.reducer;
+export const {clearAuthMsgErr} = authSlice.actions;

@@ -2,7 +2,7 @@
 
 import Input from "@/components/ui/Input";
 import { CiMail } from "react-icons/ci";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, useLocation } from "react-router";
 import { TbLockPassword } from "react-icons/tb";
 import { cn } from "@/utils/cn";
 import GoogleAuth from "@/components/common/GoogleAuth";
@@ -14,10 +14,9 @@ import { toast } from "react-toastify";
 
 function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
-
-  const { error, message, isAuthenticated, loading } = useSelector(
+  // Get loading error from the auth reducer
+  const { error, loading } = useSelector(
     (state) => state.auth,
   );
 
@@ -26,7 +25,6 @@ function Login() {
   const [touched, setTouched] = useState({ email: false, password: false });
 
   // Ref to track the toast
-  const hasShownLogin = useRef(false);
   const hasShownRedirect = useRef(false);
 
   // Validate the email, password and get  validation error
@@ -75,17 +73,6 @@ function Login() {
       hasShownRedirect.current = true;
     }
   }, [location.state?.fromProtected]);
-
-  // Show Login success message after successful login and navigate to the user from where they are redirected
-  useEffect(() => {
-    if (isAuthenticated && message && !hasShownLogin.current) {
-      toast.success(message);
-      hasShownLogin.current = true;
-      // Get the previous location from where the user redirected for login
-      const redirectPath = location.state?.from || "/";
-      navigate(redirectPath, { replace: true });
-    }
-  }, [isAuthenticated, message, navigate, location.state?.from]);
 
   return (
     <div className="bg-[#fffffe] border border-[#121629]/60 rounded-sm sm:rounded-md shadow-md sm:shadow-xl">
