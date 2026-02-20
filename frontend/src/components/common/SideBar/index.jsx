@@ -5,13 +5,49 @@ import { NAV_ITEMS } from "../naveItem";
 import { Tooltip } from "react-tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import { logout } from "@/store/auth/authThunk";
+import { getMe, logout } from "@/store/auth/authThunk";
 import { FaHospitalUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { toast } from "react-toastify";
+import { updateAvatar } from "@/store/user/userThunk";
+import { useRef } from "react";
 
 function SideBar() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const fileInputRef = useRef(null);
+
+  // Make the profile to uploadable file.
+  const handleAvatarClick = ()=>{
+    fileInputRef.current.click();
+  }
+
+  // Change the avatar when user select the images.
+  const handleAvatarChange = async (e)=>{
+    const file = e.target.files[0];
+    // Show toast if user don't exist.
+    if(!file){
+      toast.error("You haven't selected the file.");
+      return;
+    }
+    // Show the error if user uploading different type of file
+    if(!file.type.startsWith("image/")){
+      toast.error("Only images are allowed");
+      return;
+    }
+    // Change that file into formdata means multipart/form (real object not json like object)
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try{
+      // Update the avatar
+      await dispatch(updateAvatar(formData)).unwrap();
+      toast.success("Your profile photo changed successfully.")
+      dispatch(getMe());
+    }catch(err){
+      toast.error(err?.msg || "Failed to change the profile photo.")
+    }
+  }
 
   return (
     <motion.div
@@ -23,18 +59,27 @@ function SideBar() {
     >
       <div className="flex flex-col justify-center items-center gap-4 mb-4">
         <div className="flex justify-center items-center">
-          {user.avatar ? (
-            <img
+          <button onClick={handleAvatarClick} className="cursor-pointer">
+            {user.avatar ? (
+              <img
               src={user.avatar}
               alt="User name"
               className="w-12 h-12 rounded-full border-2 border-[#fffffe]"
             />
           ) : (
-            <button className="w-12 h-12 rounded-full border-2 border-[#fffffe] flex items-center justify-center bg-[#b8c1ec] text-[#232946] text-2xl font-bold">
+            <div className="w-12 h-12 rounded-full border-2 border-[#fffffe] flex items-center justify-center bg-[#b8c1ec] text-[#232946] text-2xl font-bold">
               {user.name[0]}
-            </button>
+            </div>
           )}
+          </button>
         </div>
+        <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleAvatarChange}
+            accept="image/*"
+            className="hidden"
+        />
         <p className="font-bold">{user.name}</p>
       </div>
       {/* Nav items that will only appear on the Mobile, not for tablet, laptop and pc */}
