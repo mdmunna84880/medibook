@@ -37,7 +37,7 @@ function Header({isOpen, handleSideBar}) {
             <RxHamburgerMenu className="text-xl" />
           </button>
 
-          <Logo />
+          <Link to="/"><Logo /></Link>
         </motion.div>
         {/* Nav items that will only appear on Tablet, Laptop and PC */}
         <ul className="hidden sm:flex gap-4 sm:gap-6 md:gap-8 items-center">
