@@ -16,9 +16,9 @@ export const getPatientDetail = createAsyncThunk("user/me", async (_, {rejectWit
 });
 
 // Update profile photo
-export const updateAvatar = createAsyncThunk("user/avatar", async (_, {rejectWithValue})=>{
+export const updateAvatar = createAsyncThunk("user/avatar", async (file, {rejectWithValue})=>{
     try{
-        const {data} = await api.patch("/api/users/avatar");
+        const {data} = await api.patch("/api/users/avatar", file);
         return data;
     }catch(err){
         if(isAxiosError(err)){
