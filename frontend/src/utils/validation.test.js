@@ -1,4 +1,4 @@
-import { validatePassword, validateEmail, validateName } from './validation.js';
+import { validatePassword, validateEmail, validateName, validatePhone } from './validation.js';
 
 // Password Validation
 describe('validatePassword', () => {
@@ -151,5 +151,81 @@ describe('validateName', () => {
       const result = validateName(name);
       expect(result.isValid).toBe(true);
     });
+  });
+});
+
+// Validate phone
+describe("validatePhone", () => {
+  test("tells the user the phone number is required", () => {
+    const result = validatePhone("");
+
+    expect(result.isValid).toBe(false);
+    expect(result.errors).toContain("Phone number is required.");
+    expect(result.message).toMatch(/required/i);
+  });
+
+  test("guides the user to start with + when missing country code", () => {
+    const result = validatePhone("919876543210");
+
+    expect(result.isValid).toBe(false);
+    expect(result.errors).toContain("Phone number must start with '+'.");
+  });
+
+  test("warns when invalid characters are used", () => {
+    const result = validatePhone("+91@98765abc");
+
+    expect(result.isValid).toBe(false);
+    expect(result.errors).toContain(
+      "Only digits, spaces, dashes and '+' are allowed.",
+    );
+  });
+
+  test("asks for a valid country code after +", () => {
+    const result = validatePhone("+ 9876543210");
+
+    expect(result.isValid).toBe(false);
+    expect(result.errors).toContain(
+      "Enter a valid country code after '+'.",
+    );
+  });
+
+  test("informs when phone number is too short", () => {
+    const result = validatePhone("+91 123");
+
+    expect(result.isValid).toBe(false);
+    expect(result.errors).toContain(
+      "Phone number must contain 7 to 15 digits.",
+    );
+  });
+
+  test("informs when phone number is too long", () => {
+    const result = validatePhone("+12345678901234567890");
+
+    expect(result.isValid).toBe(false);
+    expect(result.errors).toContain(
+      "Phone number must contain 7 to 15 digits.",
+    );
+  });
+
+  test("accepts a clean international number", () => {
+    const result = validatePhone("+919876543210");
+
+    expect(result.isValid).toBe(true);
+    expect(result.errors).toEqual([]);
+    expect(result.message).toBe("Phone number is valid.");
+  });
+
+  test("accepts spaces and dashes for readability", () => {
+    const result = validatePhone("+91 98765-43210");
+
+    expect(result.isValid).toBe(true);
+  });
+
+  test("returns multiple helpful messages when multiple rules fail", () => {
+    const result = validatePhone("abc");
+
+    expect(result.isValid).toBe(false);
+    expect(result.errors.length).toBeGreaterThan(1);
+    expect(result.message).toMatch(/must start with '\+'/i);
   });
 });

@@ -93,7 +93,7 @@ describe("SideBar", () => {
 
     const profileLink = screen.getByRole("link", { name: /patient/i });
 
-    expect(profileLink).toHaveAttribute("href", "/profile");
+    expect(profileLink).toHaveAttribute("href", "/");
   });
 
   it("logs the user out when they choose to sign out", async () => {

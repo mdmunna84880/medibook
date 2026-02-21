@@ -3,7 +3,7 @@ export const getInitialValidationState = (obj)=>{
   const result = {};
   for(const [key, value] of Object.entries(obj)){
     if(key === "id" || key === "name" || key === "email") continue;
-    if(value && typeof key === "object"){
+    if(value && typeof value === "object"){
       result[key] = getInitialValidationState(value);
     }else{
       result[key] = false;
