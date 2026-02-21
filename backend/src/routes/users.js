@@ -4,10 +4,11 @@ const { getPatientDetails, editPatientInfo, updateAvatar } = require('../control
 const { uploadAvatar } = require("../middlewares/upload");
 const { validate } = require("../middlewares/validate");
 const { userSchema } = require("../validators/userSchema");
+const { noCache } = require('../middlewares/noCache');
 const router = express.Router();
 
 // Get patient details
-router.get('/', isLogin, getPatientDetails);
+router.get('/', isLogin, noCache, getPatientDetails);
 
 // Edit patient detail
 router.patch('/edit', isLogin,validate(userSchema), editPatientInfo);
