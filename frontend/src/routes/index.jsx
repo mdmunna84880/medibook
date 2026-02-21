@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router";
 
 import Dashboard from "@/pages/dashboard";
 import MainLayout from "@/layouts/MainLayout";
-import Profile from "@/pages/profile";
 import BookAppointment from "@/pages/book-appointment";
 import MyAppointment from "@/pages/my-appointment";
 import AuthLayout from "@/layouts/AuthLayout";
@@ -18,7 +17,6 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>} >
         <Route index element={<Dashboard />} />
-        <Route path="profile" element={<Profile />} />
         <Route path="book-appointment" element={<BookAppointment />} />
         <Route path="my-appointment" element={<MyAppointment />} />
         <Route path="services" element={<Services />} />

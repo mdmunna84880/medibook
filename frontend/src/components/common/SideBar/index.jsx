@@ -110,7 +110,7 @@ function SideBar() {
           <Link
             data-tooltip-id="my-tooltip"
             data-tooltip-content={"See your details"}
-            to="/profile"
+            to="/"
             className="hover:text-[#eebbc3] flex gap-2 items-center"
           >
             <FaHospitalUser />
