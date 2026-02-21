@@ -20,14 +20,16 @@ function MainLayout() {
       <header>
         <Header handleSideBar={handleSideBar} isOpen={isOpen} />
       </header>
-      <div className="flex-1">
+      <div className="flex-1 bg-[#d4d8f0] text-[#232946]">
         <main className="relative flex">
           {/* Side Bar */}
           <AnimatePresence>
             {isOpen && <SideBar />}
           </AnimatePresence>
           {/* Other page like services, appointments and more */}
-          <Outlet />
+          <div className="flex-1">
+            <Outlet />
+          </div>
         </main>
       </div>
       <footer>

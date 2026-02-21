@@ -5,7 +5,7 @@ import { isAxiosError } from "axios";
 // Get the patient details.
 export const getPatientDetail = createAsyncThunk("user/me", async (_, {rejectWithValue})=>{
     try{
-        const {data} = await api.get("/api/users/me");
+        const {data} = await api.get("/api/users");
         return data;
     }catch(err){
         if(isAxiosError(err)){
@@ -29,9 +29,9 @@ export const updateAvatar = createAsyncThunk("user/avatar", async (file, {reject
 });
 
 // Update patient profile detail
-export const updateProfile = createAsyncThunk("user/profile", async (_, {rejectWithValue})=>{
+export const updateProfile = createAsyncThunk("user/profile", async (formData, {rejectWithValue})=>{
     try{
-        const {data} = await api.patch("/api/users/edit");
+        const {data} = await api.patch("/api/users/edit", formData);
         return data;
     }catch(err){
         if(isAxiosError(err)){

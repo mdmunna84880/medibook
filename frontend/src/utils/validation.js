@@ -100,3 +100,45 @@ export const validateName = (name) => {
     message: errors.length ? errors.join(" ") : "Name is valid.",
   };
 };
+
+// Validate phone function to validate and give useful information
+export const validatePhone = (phone = "") => {
+  const digitsOnly = phone.replace(/[^\d]/g, "");
+
+  const requirements = {
+    notEmpty: phone.length > 0,
+    startsWithPlus: /^\+/.test(phone),
+    validChars: /^\+[0-9\s-]+$/.test(phone),
+    hasCountryCode: /^\+\d{1,4}/.test(phone),
+    validDigitLength: digitsOnly.length >= 7 && digitsOnly.length <= 15,
+  };
+
+  const errors = [];
+
+  if (!requirements.notEmpty) {
+    errors.push("Phone number is required.");
+  }
+
+  if (requirements.notEmpty && !requirements.startsWithPlus) {
+    errors.push("Phone number must start with '+'.");
+  }
+
+  if (requirements.notEmpty && !requirements.validChars) {
+    errors.push("Only digits, spaces, dashes and '+' are allowed.");
+  }
+
+  if (requirements.startsWithPlus && !requirements.hasCountryCode) {
+    errors.push("Enter a valid country code after '+'.");
+  }
+
+  if (requirements.validChars && !requirements.validDigitLength) {
+    errors.push("Phone number must contain 7 to 15 digits.");
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    message: errors.length ? errors.join(" ") : "Phone number is valid.",
+  };
+};
+

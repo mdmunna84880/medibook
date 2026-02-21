@@ -8,6 +8,7 @@ function Input({
   RightIcon,
   LeftIcon,
   className,
+  inputCN,
   labelCN,
   type,
   placeholder,
@@ -36,7 +37,7 @@ function Input({
         {label}
       </label>
       {/* Box for the input, leftIcon, and rightIcon with showPasswordFunctionality */}
-      <div className="w-full flex items-center gap-1 px-1 sm:px-1.5 py-1 sm:py-1.5 border-2 border-[#121629] rounded-sm md:rounded-md group">
+      <div className={cn("w-full flex items-center gap-1 px-1 sm:px-1.5 py-1 sm:py-1.5 border-2","border-[#121629] rounded-sm md:rounded-md group", inputCN)}>
         {LeftIcon && <LeftIcon className="text-gray-400 group-focus-within:text-[#232946]"/>}
         <input
           type={inpuyType}
