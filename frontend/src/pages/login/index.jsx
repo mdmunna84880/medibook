@@ -68,11 +68,11 @@ function Login() {
 
   // Show login to continue, if they are come pushed to this route
   useEffect(() => {
-    if (location.state?.fromProtected && !hasShownRedirect.current) {
+    if (location.state?.fromProtected && !hasShownRedirect.current && !error) {
       toast.warning("Please login to continue");
       hasShownRedirect.current = true;
     }
-  }, [location.state?.fromProtected]);
+  }, [location.state?.fromProtected, error]);
 
   return (
     <div className="bg-[#fffffe] border border-[#121629]/60 rounded-sm sm:rounded-md shadow-md sm:shadow-xl">

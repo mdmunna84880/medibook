@@ -72,11 +72,11 @@ function SignUp() {
 
   // Show sign up to continue, if they are pushed to this route
   useEffect(() => {
-    if (location.state?.fromProtected && !hasShownRedirect.current) {
+    if (location.state?.fromProtected && !hasShownRedirect.current && !error) {
       toast.warning("Please sign up to continue");
       hasShownRedirect.current = true;
     }
-  }, [location.state?.fromProtected]);
+  }, [location.state?.fromProtected, error]);
 
   return (
     <div className="bg-[#fffffe] border border-[#121629]/60 rounded-sm sm:rounded-md shadow-md sm:shadow-xl">
