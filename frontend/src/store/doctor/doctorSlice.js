@@ -3,7 +3,7 @@ import { getAllDepartments } from "./doctorThunk"
 
 // Initial state
 const initialState = {
-    doctors: [],
+    departments: [],
     loading: false,
     error: null
 }
@@ -14,14 +14,14 @@ const doctorSlice = createSlice({
     initialState,
     extraReducers: (builder)=>{
         builder
-        // All cases for getting all department
+        // All cases for getting all departments
             .addCase(getAllDepartments.pending, (state)=>{
                 state.loading = true;
                 state.error = null;
             })
             .addCase(getAllDepartments.fulfilled, (state, action)=>{
                 state.loading = false;
-                state.doctors = action.payload.department;
+                state.departments = action.payload.department;
             })
             .addCase(getAllDepartments.rejected, (state, action)=>{
                 state.loading = false;
