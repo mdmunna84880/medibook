@@ -12,24 +12,21 @@ const env = require('./config/env');
 
 // Initializing application
 const app = express();
+app.set("trust proxy", 1);
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://medibook-one-mu.vercel.app"
-];
 
 // Middlewares like cors, cookieParser and more
-app.use(cors({origin: function (origin, callback) {
-      // allow requests with no origin
-      if (!origin) return callback(null, true);
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
-      }
-    }, credentials: true}));
-
+app.options("*", cors({
+  origin: true,
+  credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 
