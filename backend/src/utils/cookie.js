@@ -6,6 +6,7 @@ const setAuthCookie = (res, token)=>{
         httpOnly: true,
         secure: NODE_ENV === "production",
         sameSite: NODE_ENV === "production"? "none":"lax",
+        path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000
     });
 }
@@ -16,6 +17,7 @@ const clearAuthCookie = (res)=>{
         httpOnly: true,
         secure: NODE_ENV === "production",
         sameSite: NODE_ENV === "production"? "none":"lax",
+        path: "/",
     });
 }
 
