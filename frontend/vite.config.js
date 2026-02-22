@@ -6,7 +6,8 @@ import { fileURLToPath } from "url";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-
+  // For vercel base url
+  base: "/",
   // Alias for the clean folder import
   resolve: {
     alias: {
