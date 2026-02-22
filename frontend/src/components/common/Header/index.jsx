@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { Tooltip } from "react-tooltip";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Logo from "@/assets/brand/logo";
+import Logo from "@/components/common/Logo";
 import Container from "@/components/ui/Container";
 import { NAV_ITEMS } from "@/components/common/naveItem";
 
