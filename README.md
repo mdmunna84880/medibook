@@ -8,11 +8,23 @@
 ![Vercel](https://img.shields.io/badge/Frontend-Hosted_on_Vercel-black?logo=vercel)
 ![Render](https://img.shields.io/badge/Backend-Hosted_on_Render-46E3B7)
 
-A full-stack **Doctor Appointment Booking System** built using modern web technologies.
-Designed as an academic capstone project with production-ready MVP architecture.
+A full-stack **Doctor Appointment Booking System** built using modern web technologies.  
+Designed as an academic capstone project for **Module 5, AlmaBetter Full Stack Web Development Training Program**.
 
-🔗 **Live Application:** [https://medibook-sigma.vercel.app/](https://medibook-sigma.vercel.app/)
+> **Author:** Md Munna  
+> **Purpose:** Learning & Assignment - Module 5 Capstone Project
+
+🔗 **Live Application:** [https://medibook-sigma.vercel.app/](https://medibook-sigma.vercel.app/)  
 📄 **API Documentation:** [https://documenter.getpostman.com/view/48458052/2sBXc8pj1c](https://documenter.getpostman.com/view/48458052/2sBXc8pj1c)
+
+---
+
+## 📚 Documentation
+
+Detailed documentation for each part of the project:
+
+- **[Backend Documentation](./backend/README.md)** - API endpoints, models, middleware, authentication
+- **[Frontend Documentation](./frontend/README.md)** - Components, routing, state management, testing
 
 ---
 
@@ -26,7 +38,7 @@ MediBook allows patients to:
 * 👤 Manage personal profile
 * 📋 View appointment history
 
-This project demonstrates full-stack engineering principles with clean architecture and scalable structure.
+This project demonstrates full-stack engineering principles with clean architecture and scalable structure, built as part of the **AlmaBetter Full Stack Web Development Training Program**.
 
 ---
 
@@ -282,17 +294,19 @@ http://localhost:5173
 
 # 🎓 Project Scope
 
-* Educational Demonstration Project
-* Academic Capstone Submission
-* Production-Ready MVP Architecture
-* Portfolio-Level Full-Stack Application
+* **Educational Demonstration Project**
+* **Academic Capstone Submission** - Module 5, AlmaBetter Full Stack Web Development Training Program
+* **Production-Ready MVP Architecture**
+* **Portfolio-Level Full-Stack Application**
 
 ---
 
 # 👨‍💻 Author
 
-**Md Munna**
+**Md Munna**  
+Full Stack Developer
+AlmaBetter Student
 
-Engineer | Full-Stack Developer
+> **Purpose:** Learning & Assignment - Module 5 Capstone Project, AlmaBetter Full Stack Web Development Training Program
 
-GitHub: [https://github.com/mdmunna84880](https://github.com/mdmunna84880)
+🔗 **GitHub:** [https://github.com/mdmunna84880](https://github.com/mdmunna84880)
